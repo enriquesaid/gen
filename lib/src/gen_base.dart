@@ -19,9 +19,7 @@ class Generate {
 
   List<String> words() => text.split(' ')..shuffle(_r);
 
-  String firstWord() => words()
-      .firstWhere((s) => RegExp('([A-Z][a-z0-9]+)+').hasMatch(s))
-      .replaceAll('.', '');
+  String firstWord() => _capitalize(words()[0]).replaceAll('.', '');
 
   String lastWord() =>
       words().firstWhere((s) => RegExp('([+.])+').hasMatch(s)).toLowerCase();
@@ -42,5 +40,15 @@ class Generate {
           .where((s) => !s.contains(first) && RegExp('^[^.]+\$').hasMatch(s)),
       lastWord().replaceAll('.', ''),
     ].join(' ').trim();
+  }
+
+  String paragraph() {
+    var p = _capitalize((text.split('. ')..shuffle(_r))[0]);
+    return '$p.';
+  }
+
+  // TODO: Wrong place
+  String _capitalize(String s) {
+    return '${s[0].toUpperCase()}${s.substring(1)}';
   }
 }
