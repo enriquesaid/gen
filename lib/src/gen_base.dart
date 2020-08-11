@@ -40,8 +40,7 @@ class Generate {
   }
 
   String paragraph() {
-    var p = capitalize((dataTextsDefault.split('. ')..shuffle(_r))[0])
-        .replaceAll('.', '');
-    return '$p.';
+    var p = (dataTextsDefault.split('. ')..shuffle(_r))[0].replaceAll('.', '');
+    return '${capitalize(p)}.';
   }
 }
