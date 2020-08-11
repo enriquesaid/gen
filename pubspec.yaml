@@ -1,6 +1,6 @@
 name: gen
-description: Data generator for dart
-version: 0.0.1+1
+description: Data fake generator for Dart.
+version: 0.0.1+2
 repository: https://github.com/enriquesaid/gen
 homepage: https://github.com/enriquesaid/gen
 
