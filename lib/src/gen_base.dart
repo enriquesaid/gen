@@ -18,16 +18,18 @@ class Generate {
     var data = text.split(' ')..shuffle(_r);
     var first = data.firstWhere((d) => RegExp('([A-Z][a-z0-9]+)+').hasMatch(d));
     var last = data.firstWhere((d) => RegExp('([.]+)+').hasMatch(d));
-    var start = integer(data.length - words);
+    var start = integer(data.length);
+    var end = start + words;
+    if (end > data.length) end = data.length;
     return [
-      first,
+      first.trim(),
       data
-          .getRange(start, start + words)
-          .where((s) => RegExp('^[^.]*\$').hasMatch(s))
+          .getRange(start, end)
+          .where((s) => RegExp('^[^.]+\$').hasMatch(s))
           .toSet()
           .join(' ')
           .toLowerCase(),
-      last,
+      last.trim().toLowerCase(),
     ].join(' ').trim();
   }
 }
