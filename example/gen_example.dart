@@ -1,7 +1,7 @@
 import 'package:gen/gen.dart';
 
 void main() {
-  var gen = Generate();
+  final gen = Generate();
   print('bool: ${gen.boolean()}');
   print('int: ${gen.integer()}');
   print('title: ${gen.title()}');
