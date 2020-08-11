@@ -9,10 +9,6 @@ void main() {
       gen = Generate();
     });
 
-    test('boolean() Test', () {
-      expect(gen.boolean().runtimeType, bool);
-    });
-
     test('boolean() true', () {
       expect(gen.boolean(likelihood: 100), true);
     });
