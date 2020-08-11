@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:strings/strings.dart';
 
 // TODO: Wrong place
 var text =
@@ -13,13 +14,12 @@ class Generate {
 
   int integer([max = 999, min = 0]) {
     var i = _r.nextInt(max);
-    if (i < min) i = min;
-    return i;
+    return i < min ? min : i;
   }
 
   List<String> words() => text.split(' ')..shuffle(_r);
 
-  String firstWord() => _capitalize(words()[0]).replaceAll('.', '');
+  String firstWord() => capitalize(words()[0]).replaceAll('.', '');
 
   String lastWord() =>
       words().firstWhere((s) => RegExp('([+.])+').hasMatch(s)).toLowerCase();
@@ -28,12 +28,12 @@ class Generate {
     var data = words();
     var first = firstWord();
     var start = integer(data.length);
-    var end = start + integer(7, 1);
-    if (end > data.length) end = data.length;
+    var range = integer(7, 1);
+    var end = start + range > data.length ? data.length : start + range;
 
     return [
       first,
-      ...data
+      ...[data.first.toLowerCase(), ...data.sublist(1, data.length)]
           .getRange(start, end)
           .map((s) => s.length > 1 ? s : s.toLowerCase())
           .toSet()
@@ -43,12 +43,7 @@ class Generate {
   }
 
   String paragraph() {
-    var p = _capitalize((text.split('. ')..shuffle(_r))[0]);
+    var p = capitalize((text.split('. ')..shuffle(_r))[0]);
     return '$p.';
-  }
-
-  // TODO: Wrong place
-  String _capitalize(String s) {
-    return '${s[0].toUpperCase()}${s.substring(1)}';
   }
 }
